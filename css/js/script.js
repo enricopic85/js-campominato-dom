@@ -4,19 +4,19 @@ function createEvent(box,color){
         this.classList.add(color);
         if (color==="red") {
             alert(`hai perso ed hai totalizzato ${punteggio}`);
-
+            punteggio=0;
         } else{
             punteggio++;
         }
     })
 }
 
-function createNewBox(noRepeat,griglia,box,i){
+function createNewBox(bombe,griglia,box,i){
     let newBox=document.createElement('div');
     newBox.className=box;
     newBox.innerText=i;
     griglia.append(newBox);
-    if (noRepeat.includes(i)) {
+    if (bombe.includes(i)) {
         createEvent(newBox,"red");
     } else{
         createEvent(newBox,"azure")

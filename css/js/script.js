@@ -1,10 +1,13 @@
 
-function createEvent(box,color){
+function createEvent(box,color,griglia){
     box.addEventListener('click',function(){
         this.classList.add(color);
         if (color==="red") {
             alert(`hai perso ed hai totalizzato ${punteggio}`);
             punteggio=0;
+            let clock=setTimeout(() => {
+                griglia.innerText="";
+            }, 1000);
         } else{
             punteggio++;
         }
@@ -17,9 +20,9 @@ function createNewBox(bombe,griglia,box,i){
     newBox.innerText=i;
     griglia.append(newBox);
     if (bombe.includes(i)) {
-        createEvent(newBox,"red");
+        createEvent(newBox,"red",griglia1);
     } else{
-        createEvent(newBox,"azure")
+        createEvent(newBox,"azure",griglia1)
     }
 }
 function punteggioMax(max){
@@ -28,9 +31,6 @@ function punteggioMax(max){
         alert("complimenti hai terminato la partita!")
     }
 }
-//il computer deve generare 16 numeri casuali nello stesso range di difficoltà prescelta:le bombe.
-//I numeri nella lista delle bombe non possono essere duplicati.
-// let random= (min,max) => Math.floor( Math.random() * (max-min) + min);
 
 function noRepeatNumber(min,max){
     const numbers=[];
@@ -56,7 +56,6 @@ scelta1.addEventListener('click',function(){
         let bombe=noRepeatNumber(1,100)
         for(i=1; i <= 100; i++){
         createNewBox(bombe,griglia1,'box1',i);
-
     }
  });
  scelta2.addEventListener('click',function(){
